@@ -61,7 +61,6 @@ int main(int argc, char** argv)
 	backwardatedBuffer.read(backwardatedResults.data(), sizeof(backwardatedResults));
 
     // Validate our results
-	size_t correct = 0;
     for(size_t i = 0; i < count; i++)
     {
 		auto correctBid = bid - spreads[i];

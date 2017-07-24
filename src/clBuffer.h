@@ -1,7 +1,11 @@
 #ifndef CL_BUFFER_H
 #define CL_BUFFER_H
 
+#ifdef __APPLE__
+#include <OpenCL/opencl.h>
+#else
 #include <CL/opencl.h>
+#endif
 
 class clBuffer
 {
