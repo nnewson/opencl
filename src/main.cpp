@@ -12,8 +12,8 @@ int main(int argc, char** argv)
 	std::uniform_real_distribution< float > dist(-10.0f, 10.f);
 
 	// Generate a bunch of random spreads between -10 and 10
-	const size_t count = 1024;
-	std::array< float, count > spreads;
+	const uint32_t count = 1024;
+	std::array< float, count > spreads{};
 
 	for (auto& item : spreads)
 	{
@@ -27,13 +27,13 @@ int main(int argc, char** argv)
 	// Create the various device buffers and host data
 	auto& spreadBuffer = device.createBuffer(sizeof(spreads));
 
-	std::array< float, count > bidResults; 
+	std::array< float, count > bidResults{};
 	auto& bidBuffer = device.createBuffer(sizeof(bidResults));
 
-	std::array< float, count > askResults;
+	std::array< float, count > askResults{};
 	auto& askBuffer = device.createBuffer(sizeof(askResults));
 
-	std::array< unsigned char, count > backwardatedResults;
+	std::array< unsigned char, count > backwardatedResults{};
 	auto& backwardatedBuffer = device.createBuffer(sizeof(backwardatedResults));
 
 	// Bind buffers and constants to the kernel arguments
