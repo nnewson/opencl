@@ -1,8 +1,10 @@
-# Download Nvidia/OpenCL Ubuntu 18.04
-FROM nvidia/opencl:runtime-ubuntu18.04
+# Download Ubuntu 20.04
+FROM ubuntu:20.04
+
+RUN apt-get update && apt-get install -y ocl-icd-opencl-dev
 
 # Copy the executable into the container
-COPY cmake-build-release/opencl /home/
+COPY build/opencl /home/
 COPY cl/kernel.cl /home/
 
 # Run the executable
