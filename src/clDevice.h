@@ -1,6 +1,8 @@
 #ifndef CL_DEVICE_H
 #define CL_DEVICE_H
 
+#define CL_TARGET_OPENCL_VERSION 220
+
 #include <list>
 
 #ifdef __APPLE__

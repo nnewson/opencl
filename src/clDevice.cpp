@@ -48,7 +48,7 @@ void clDevice::setupDevice(const strFile& kernelFile)
 		throw std::runtime_error("Failed to create a compute context.");
 	}
 
-	m_commandQueue = clCreateCommandQueue(m_context, m_deviceId, 0, &errorCode);
+	m_commandQueue = clCreateCommandQueueWithProperties(m_context, m_deviceId, nullptr, &errorCode);
 	if (!m_commandQueue)
 	{
 		throw std::runtime_error("Failed to create a command queue.");
