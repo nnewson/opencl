@@ -1,17 +1,44 @@
-# Open CL Framework
+# Open CL Framework in C++
 
-## CMake Settings
-Ensure you have both the following CMake setting defined:  
-`CMAKE_INCLUDE_PATH` - This should point to the directory that contains your OpenCL include - i.e. the root of `CL/opencl.h`
+Setup [vcpkg](https://vcpkg.io/en/) on the build machine, and ensure that VCPKG_ROOT is available in the PATH environment variable.
+Details of how to do this can be found at steps 1 and 2 in this [getting started doc](https://learn.microsoft.com/en-gb/vcpkg/get_started/get-started).
+Ensure the `vcpkg` executable is available in your `PATH`.
 
-`CMAKE_LIBRARY_PATH` - This should point to the directory that contains your OpenCL libraries - i.e. the root of `libOpenCL.so`
+Configure CMake, which will install and build dependencies via vcpkg.
+Additionally, since I use `NeoVim`, I export the `compile_commands.json` to the build directory to for use with `clangd`:
 
-## Docker Settings
-Build the Docker container in the working directory as:
+```bash
+cmake --preset=vcpkg -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 ```
-docker build --tag opencl:VERSION_NUMBER
+
+Build the test via CMake:
+
+```bash
+cmake --build build
 ```
-To run it, use the nvidia-docker2 runtime:
+
+Run the tests:
+
+```bash
+./build/test_wait_free_queue
 ```
-docker run --runtime=nvidia opencl:VERSION_NUMBER
+
+Build documentation into the docs folder:
+
+```bash
+doxygen Doxyfile
+```
+
+You can also build and test in a Docker containter.
+
+Build the container:
+
+```bash
+docker build -t opencl .
+```
+
+Run the tests in the container:
+
+```bash
+docker run --rm opencl
 ```

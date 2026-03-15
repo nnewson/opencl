@@ -1,22 +1,18 @@
-#include "strFile.h"
+#include "strFile.hpp"
 
+#include <fstream>
+#include <sstream>
 #include <stdexcept>
 
-strFile::strFile(const std::string& fileName)
+std::string readFile(const std::filesystem::path& filePath)
 {
-	std::ifstream file(fileName, std::ios::in);
-	if (file) {
-		std::stringstream buffer;
-		buffer << file.rdbuf();
-		m_strFile = buffer.str();
-	}
-	else
-	{
-		throw std::runtime_error("Failed to open file.");
-	}
-}
+    std::ifstream file(filePath, std::ios::in);
+    if (!file)
+    {
+        throw std::runtime_error("Failed to open file: " + filePath.string());
+    }
 
-const std::string& strFile::str() const
-{
-	return m_strFile;
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    return buffer.str();
 }
