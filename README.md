@@ -4,6 +4,8 @@ Setup [vcpkg](https://vcpkg.io/en/) on the build machine, and ensure that VCPKG_
 Details of how to do this can be found at steps 1 and 2 in this [getting started doc](https://learn.microsoft.com/en-gb/vcpkg/get_started/get-started).
 Ensure the `vcpkg` executable is available in your `PATH`.
 
+***Note***: The local build should run with any GPU, but the Docker container requires an Nvidia GPU, due the runtime image used.
+
 Configure CMake, which will install and build dependencies via vcpkg.
 Additionally, since I use `NeoVim`, I export the `compile_commands.json` to the build directory to for use with `clangd`:
 

@@ -21,8 +21,8 @@ COPY cl/ cl/
 RUN cmake --preset vcpkg
 RUN cmake --build build
 
-FROM ubuntu:24.04
-RUN apt-get update && apt-get install -y libstdc++6 ocl-icd-libopencl1 pocl-opencl-icd && rm -rf /var/lib/apt/lists/*
+FROM nvidia/cuda:13.1.1-cudnn-runtime-ubuntu24.04
+RUN apt-get update && apt-get install -y ocl-icd-libopencl1 && rm -rf /var/lib/apt/lists/*
 COPY --from=build /src/build/opencl /usr/local/bin/opencl
 COPY --from=build /src/cl/kernel.cl /usr/local/bin/kernel.cl
 ENTRYPOINT ["opencl"]

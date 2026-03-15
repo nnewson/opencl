@@ -36,7 +36,7 @@ void clDevice::setupDevice(const std::string& kernelSource)
         throw std::runtime_error("Failed to get platform.");
     }
 
-    errorCode = clGetDeviceIDs(m_platformId, CL_DEVICE_TYPE_DEFAULT, 1, &m_deviceId, nullptr);
+    errorCode = clGetDeviceIDs(m_platformId, CL_DEVICE_TYPE_GPU, 1, &m_deviceId, nullptr);
     if (errorCode != CL_SUCCESS)
     {
         throw std::runtime_error("Failed to create a device group.");
