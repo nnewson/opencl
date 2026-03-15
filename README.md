@@ -20,7 +20,7 @@ cmake --build build
 Run the tests:
 
 ```bash
-./build/test_wait_free_queue
+./build/opencl
 ```
 
 Build documentation into the docs folder:
